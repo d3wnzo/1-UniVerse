@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.papayaseed.controllers.user.ProductDetailController">
+
+    <children>
+        <VBox spacing="15"
+              AnchorPane.topAnchor="0"
+              AnchorPane.bottomAnchor="0"
+              AnchorPane.leftAnchor="0"
+              AnchorPane.rightAnchor="0">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label fx:id="lblProductName">
+                <font>
+                    <Font size="20"/>
+                </font>
+            </Label>
+
+            <Label fx:id="lblPrice"/>
+
+            <Label fx:id="lblDescription"
+                   wrapText="true"/>
+
+            <Button text="Tambah ke Keranjang"
+                    prefWidth="200"/>
+
+        </VBox>
+    </children>
+
+</AnchorPane
+
+    xmlns="http://javafx.com/javafx/17"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.papayaseed.controllers.user.HomeController"
+    stylesheets="@/com/papayaseed/css/style.css"
+>

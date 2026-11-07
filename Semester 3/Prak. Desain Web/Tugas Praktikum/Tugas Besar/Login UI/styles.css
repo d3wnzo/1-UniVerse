@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #000;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+/* Header Start */
+
+.sun {
+    width: 350px;
+    height: 175px;
+    background: radial-gradient(circle at bottom, #74CAFF, #1D8CFF 80%);
+    border-top-left-radius: 350px;
+    border-top-right-radius: 350px;
+    position: absolute;
+    top: -150px;
+    box-shadow: 0 0 150px 60px #74CAFF88;
+    filter: blur(60px);
+    rotate: 180deg;
+    left: 50%;
+    transform: translate(50%);
+}
+
+h1 {
+    color: #fff;
+    margin: 10px;
+    margin-left: 100px;
+    font-size: 40px;
+}
+
+h1 a {
+    text-decoration: none;
+    color: #fff;
+}
+
+form {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    width: 25%;
+    gap: 15px;
+}
+
+#txtName,
+#txtPassword {
+    padding: 10px 18px;
+    border: 2px solid #74CAFF88;
+    border-radius: 30px;
+}
+
+label[for="txtName"],
+label[for="txtPassword"] {
+    color: #fff;
+    font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+input[type="submit"] {
+    border-radius: 30px;
+    padding: 10px 172px;
+    margin-top: 10px;
+    font-size: 15px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background 0.4s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #74CAFF88;
+}

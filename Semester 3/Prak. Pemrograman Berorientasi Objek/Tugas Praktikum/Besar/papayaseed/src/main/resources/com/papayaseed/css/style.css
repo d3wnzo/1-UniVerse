@@ -1,0 +1,48 @@
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: #FFF8F0;
+}
+
+/* Judul */
+.label {
+    -fx-text-fill: #444;
+}
+
+.label:title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* Button */
+.button {
+    -fx-background-color: #FF9800;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #FB8C00;
+}
+
+/* TextField & PasswordField */
+.text-field,
+.password-field {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #FFCC80;
+    -fx-padding: 8;
+}
+
+/* ListView */
+.list-view {
+    -fx-background-radius: 6;
+    -fx-border-color: #FFCC80;
+}
+
+/* ChoiceBox */
+.choice-box {
+    -fx-background-radius: 6;
+    -fx-border-color: #FFCC80;
+}

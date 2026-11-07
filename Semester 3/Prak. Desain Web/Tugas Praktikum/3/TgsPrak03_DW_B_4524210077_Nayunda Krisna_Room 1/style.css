@@ -1,0 +1,219 @@
+/* Import font Poppins dari Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+/* ===== Pengaturan Dasar Halaman ===== */
+body {
+  font-family: "Poppins", sans-serif; /* Font utama */
+  margin: 0; /* Menghapus margin default browser */
+  background-color: #303132; /* Warna latar belakang netral */
+  color: #333; /* Warna teks utama */
+  line-height: 1.6; /* Jarak antar baris */
+}
+
+.container {
+  width: 90%; /* Lebar container relatif */
+  max-width: 1450px; /* Batas maksimum */
+  margin: 0 auto; /* Agar konten di tengah */
+}
+
+/* ===== HEADER ===== */
+header {
+  background-color: #ffffff; /* Warna latar header */
+  padding: 16px 0; /* Spasi atas bawah */
+  border-bottom: 1px solid #e0e0e0; /* Garis bawah */
+  position: sticky; /* Tetap di atas saat di-scroll */
+  top: 0;
+  z-index: 100; /* Agar header di atas elemen lain */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Bayangan halus */
+}
+
+header .container {
+  display: flex; /* Susunan horizontal */
+  justify-content: space-between; /* Pisahkan kiri-kanan */
+  align-items: center; /* Rata vertikal */
+}
+
+/* ===== MAIN ===== */
+main.container {
+  display: flex; /* Bagi area konten & sidebar */
+  gap: 32px; /* Jarak antar kolom */
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center; /* Teks rata tengah */
+  padding: 5px 0; /* Spasi vertikal */
+  background-color: #007bff; /* Warna biru khas */
+  color: #ffffff; /* Warna teks putih */
+  margin-top: 32px;
+}
+
+/* ===== STRUKTUR KONTEN ===== */
+.main-content {
+  flex: 3; /* Lebih lebar dari sidebar */
+}
+
+.sidebar {
+  flex: 1; /* Lebar lebih kecil */
+}
+
+/* Kartu konten utama */
+.main-content article,
+.main-content section {
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== TIPOGRAFI ===== */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #007bff; /* Warna judul biru */
+  font-weight: 600;
+}
+
+h1.site-title {
+  margin: 0;
+  font-size: 28px;
+  color: #007bff;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 28px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+h4 {
+  font-size: 22px;
+}
+
+h5 {
+  font-size: 18px;
+  margin-top: 24px;
+}
+
+/* ===== NAVIGASI ===== */
+nav ul {
+  list-style: none; /* Hilangkan bullet */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Rata horizontal */
+  gap: 24px; /* Jarak antar menu */
+}
+
+nav a {
+  text-decoration: none; /* Hilangkan garis bawah */
+  color: #333;
+  font-weight: 600;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent; /* Garis bawah transisi */
+  transition: color 0.3s, border-bottom-color 0.3s; /* Efek halus */
+}
+
+nav a:hover {
+  color: #007bff;
+  border-bottom-color: #007bff;
+}
+
+/* ===== CARD (KOMPONEN SAMPING) ===== */
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card img {
+  width: 100%; /* Lebar penuh */
+  border-radius: 6px; /* Sudut membulat */
+  margin-bottom: 8px;
+}
+
+.card .caption {
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+  margin: 0;
+}
+
+/* ===== LIST & TAGS ===== */
+ul,
+ol {
+  padding-left: 20px;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Daftar bidang informatika */
+.bidang-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 16px;
+}
+
+.bidang-list li {
+  display: inline-block; /* Berjajar horizontal */
+  margin: 5px;
+}
+
+.bidang-list li a {
+  display: block;
+  padding: 8px 16px;
+  background-color: #e9ecef;
+  color: #2c3e50;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.bidang-list li a:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+/* ===== TABEL STATISTIK ===== */
+table {
+  width: 100%; /* Lebar penuh */
+  border-collapse: collapse; /* Gabungkan border */
+  margin-top: 16px;
+  background-color: purple;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #c44747;
+}
+
+thead {
+  background-color: #3b7195;
+}
+
+th {
+  font-weight: 600;
+  background-color: #ff0000;
+}

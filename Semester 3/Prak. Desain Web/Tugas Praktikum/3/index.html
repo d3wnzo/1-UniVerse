@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Futuristic Landing — Neon Grid</title>
+  <meta name="description" content="A small futuristic demo page with neon glass UI, animated background and interactive parallax." />
+  <style>
+    :root{
+      --bg1:#07070f;
+      --bg2:#0f1224;
+      --neon-1: #7AF3FF;
+      --neon-2: #9B7CFF;
+      --glass: rgba(255,255,255,0.06);
+      --glass-2: rgba(255,255,255,0.03);
+      --accent: #A6FFCB;
+      --mono: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    /* Basic reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body,#app{height:100%}
+    body{
+      font-family:var(--mono);
+      background: radial-gradient(1200px 600px at 10% 20%, rgba(122,243,255,0.06), transparent 6%),
+                  radial-gradient(800px 400px at 90% 80%, rgba(155,124,255,0.05), transparent 6%),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      color: #e8eefb;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow:hidden;
+    }
+
+    /* animated grid background */
+    .grid-bg{
+      position:fixed;inset:0;pointer-events:none;z-index:0;mix-blend-mode:overlay;
+      background-image:linear-gradient(0deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+                       linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px, 60px 60px;
+      opacity:0.7;
+      animation: drift 12s linear infinite;
+      filter: blur(6px) hue-rotate(-10deg) saturate(120%);
+    }
+    @keyframes drift{ from{transform:translateY(0) translateX(0)} to{transform:translateY(-80px) translateX(40px)} }
+
+    /* floating orbs */
+    .orb{ position:fixed;border-radius:999px;filter:blur(28px);opacity:0.5;mix-blend-mode:screen }
+    .orb.orb-1{width:420px;height:420px;right:-80px;top:-120px;background:radial-gradient(circle,#7af3ff66,transparent 40%)}
+    .orb.orb-2{width:320px;height:320px;left:-110px;bottom:-80px;background:radial-gradient(circle,#9b7cff66,transparent 40%)}
+
+    /* container */
+    .wrap{position:relative;z-index:2;min-height:100vh;display:grid;place-items:center;padding:4rem}
+
+    /* glass card */
+    .card{
+      width:min(1100px,95%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:20px;padding:32px;backdrop-filter: blur(10px) saturate(120%);
+      box-shadow: 0 10px 40px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.04);display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:stretch
+    }
+
+    /* left content */
+    .hero{
+      display:flex;flex-direction:column;gap:18px;justify-content:center
+    }
+    .kicker{font-weight:600;color:var(--accent);letter-spacing:1px}
+    h1{font-size:clamp(28px,4.5vw,56px);line-height:1.02;margin-top:6px}
+    p.lead{color:rgba(230,240,255,0.8);max-width:70ch}
+
+    /* neon title underline */
+    .title-wrap{position:relative;display:inline-block}
+    .title-wrap:after{
+      content:"";position:absolute;left:0;right:0;bottom:-10px;height:8px;border-radius:999px;
+      background:linear-gradient(90deg,var(--neon-1),var(--neon-2));filter:blur(8px);opacity:0.9;transform:translateX(-8px);
+    }
+
+    /* action buttons */
+    .actions{display:flex;gap:12px;margin-top:10px}
+    .btn{padding:12px 18px;border-radius:14px;border:1px solid rgba(255,255,255,0.06);cursor:pointer;font-weight:600;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+    .btn.primary{background:linear-gradient(90deg,var(--neon-1),var(--neon-2));color:#07101a;box-shadow:0 6px 30px rgba(122,243,255,0.12);border:none}
+    .btn.ghost{background:transparent}
+
+    /* right side: panel */
+    .panel{background:linear-gradient(180deg,rgba(255,255,255,0.015),transparent);border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;gap:12px}
+    .panel h3{font-size:14px;color:rgba(235,245,255,0.9)}
+    .stat-row{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent)}
+    .stat{font-weight:700;font-size:18px}
+    .sub{font-size:12px;color:rgba(220,230,255,0.6)}
+
+    /* neon terminal */
+    .terminal{background:linear-gradient(180deg,rgba(2,6,23,0.7),rgba(6,10,30,0.5));padding:12px;border-radius:10px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;font-size:13px;color:#bfefff;overflow:auto;max-height:160px}
+    .term-line{white-space:pre}
+
+    /* interactive floating cards */
+    .floating{
+      position:absolute;right:6%;top:8%;width:220px;padding:14px;border-radius:14px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.03)
+    }
+
+    /* cool glass footer */
+    .meta{display:flex;gap:12px;align-items:center;color:rgba(200,220,255,0.6);font-size:13px}
+
+    /* small screens */
+    @media (max-width:880px){
+      .card{grid-template-columns:1fr;}
+      .floating{display:none}
+    }
+
+    /* custom cursor */
+    .cursor{position:fixed;left:0;top:0;width:18px;height:18px;border-radius:999px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;border:2px solid rgba(255,255,255,0.12);backdrop-filter:blur(4px)}
+    .cursor.big{width:48px;height:48px;border-width:1px}
+
+    /* subtle entrance */
+    .reveal{transform:translateY(8px);opacity:0;animation:pop 900ms cubic-bezier(.2,.9,.2,1) forwards}
+    .reveal.delay{animation-delay:140ms}
+    @keyframes pop{to{transform:none;opacity:1}}
+
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div id="app" class="wrap">
+    <div class="card reveal">
+      <div class="hero">
+        <div class="kicker">EXPERIMENTAL • v1.0</div>
+        <div class="title-wrap">
+          <h1>Portal <span style="background:linear-gradient(90deg,var(--neon-1),var(--neon-2));-webkit-background-clip:text;background-clip:text;color:transparent">NeonGrid</span></h1>
+        </div>
+        <p class="lead">Sebuah demo antarmuka futuristik: neon glass UI, dynamic background, dan elemen interaktif. Cocok untuk landing page, presentasi produk, atau sekadar gaya — jalankan di browser modern untuk efek penuh.</p>
+        <div class="actions">
+          <button class="btn primary" id="cta">Explore</button>
+          <button class="btn ghost" id="ghost">View source</button>
+        </div>
+        <div style="height:12px"></div>
+        <div class="meta">
+          <div>Built with <strong>HTML/CSS/JS</strong></div>
+          <div style="opacity:0.6">•</div>
+          <div>Interactive • Lightweight</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Realtime Metrics</h3>
+        <div class="stat-row"><div>
+          <div class="stat" id="fps">--</div>
+          <div class="sub">Frame rate</div>
+        </div><div style="text-align:right">
+          <div class="sub">Hover the buttons</div>
+        </div></div>
+
+        <div class="stat-row"><div>
+          <div class="stat" id="lat">0 ms</div>
+          <div class="sub">Latency (sim)</div>
+        </div><div style="text-align:right">
+          <div class="sub">Parallax: mouse</div>
+        </div></div>
+
+        <div class="terminal" id="terminal">
+          <div class="term-line">> initialising neon-grid…</div>
+          <div class="term-line">> rendering modules: ui, particles, parallax</div>
+          <div class="term-line">> ready — click Explore or press Space</div>
+        </div>
+
+        <div style="flex:1"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="sub">Status</div>
+          <div style="font-weight:700">Online</div>
+        </div>
+      </div>
+
+      <div class="floating reveal delay" id="card-floating">
+        <div style="font-size:12px;color:rgba(220,240,255,0.9);font-weight:700">Live Node</div>
+        <div style="margin-top:8px">CPU <strong>24%</strong></div>
+        <div style="margin-top:4px">GPU <strong>11%</strong></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+
+  <script>
+    // small interactive script: parallax, cursor, faux metrics
+    (function(){
+      const cursor = document.getElementById('cursor');
+      const cta = document.getElementById('cta');
+      const ghost = document.getElementById('ghost');
+      const fpsEl = document.getElementById('fps');
+      const latEl = document.getElementById('lat');
+      const term = document.getElementById('terminal');
+      const floating = document.getElementById('card-floating');
+
+      // custom cursor
+      let mouseX=0, mouseY=0;
+      window.addEventListener('mousemove', e=>{mouseX=e.clientX;mouseY=e.clientY;cursor.style.left = mouseX+'px';cursor.style.top=mouseY+'px';});
+
+      // pointer effects on interactive elements
+      [cta,ghost].forEach(el=>{
+        el.addEventListener('mouseenter', ()=>cursor.classList.add('big'));
+        el.addEventListener('mouseleave', ()=>cursor.classList.remove('big'));
+      });
+
+      // parallax floating card
+      window.addEventListener('mousemove', e=>{
+        const cx = innerWidth/2, cy = innerHeight/2;
+        const dx = (e.clientX - cx)/cx; const dy = (e.clientY - cy)/cy;
+        floating.style.transform = `translate3d(${dx*18}px, ${dy*12}px, 0) rotate(${dx*4}deg)`;
+      });
+
+      // faux FPS meter
+      let last = performance.now(), frames = 0;
+      function tick(now){
+        frames++;
+        if(now - last >= 500){
+          const fps = Math.round(frames*1000/(now-last));
+          fpsEl.textContent = fps+' fps';
+          frames=0; last = now;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+
+      // fake latency changes and terminal log
+      let fakeLat = 12;
+      setInterval(()=>{
+        fakeLat = 6 + Math.round(Math.random()*80);
+        latEl.textContent = fakeLat + ' ms';
+        const line = document.createElement('div'); line.className='term-line';
+        line.textContent = `> ping ${fakeLat} ms — node stable`;
+        term.appendChild(line);
+        if(term.children.length>10) term.removeChild(term.children[0]);
+        term.scrollTop = term.scrollHeight;
+      }, 2200);
+
+      // cta interaction: do a quick scene burst
+      cta.addEventListener('click', ()=>{
+        document.body.animate([{filter:'saturate(120%)'},{filter:'saturate(160%)'},{filter:'saturate(120%)'}],{duration:800,easing:'cubic-bezier(.2,.9,.2,1)'});
+        const burst = document.createElement('div'); burst.className='orb'; burst.style.width='180px'; burst.style.height='180px'; burst.style.left=(mouseX-90)+'px'; burst.style.top=(mouseY-90)+'px'; burst.style.background='radial-gradient(circle,#a6ffcb66,transparent 40%)'; burst.style.zIndex=3; burst.style.pointerEvents='none'; document.body.appendChild(burst);
+        setTimeout(()=>{burst.animate([{opacity:0.75,transform:'scale(1)'},{opacity:0,transform:'scale(2)'}],{duration:900}); setTimeout(()=>document.body.removeChild(burst),950)},20);
+      });
+
+      // keyboard: space toggles floating card visibility
+      window.addEventListener('keydown', e=>{ if(e.code==='Space'){ e.preventDefault(); floating.style.display = floating.style.display==='none'?'block':'none'; }});
+
+      // small accessibility note for view source
+      ghost.addEventListener('click', ()=>{
+        const txt = `This page is a single-file demo. Save the page as index.html and open it in any modern browser to run.`;
+        alert(txt);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    background-color: #023E8A;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 20px;
+    width: 30%;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+}
+
+#txtNama,
+#txtEmail,
+#txtPassword,
+#tanggalLahir,
+#jadwalKelas,
+#txtPesan,
+#gender {
+    padding: 10px;
+    border: 2px solid #0c4e58;
+    border-radius: 10px;
+}
+
+
+label[for="txtNama"],
+label[for="txtEmail"],
+label[for="txtPassword"],
+label[for="tanggalLahir"],
+label[for="jadwalKelas"],
+label[for="txtPesan"],
+label[for="gender"] {
+    font-weight: bold;
+}
+
+.gender-group {
+    accent-color: #023E8A;
+}
+
+.buttons {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+}
+input[type="submit"] {
+    border-radius: 30px;
+    padding: 10px 18px;
+    font-size: 15px;
+    background-color: #fff;
+    cursor: pointer;
+}

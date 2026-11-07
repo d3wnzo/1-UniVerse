@@ -1,0 +1,40 @@
+FUNCTION HitungTotalHarga(harga[], jumlah[], n)
+    IF n == 0 THEN
+        RETURN 0
+    ENDIF
+    RETURN harga[n - 1] * jumlah[n - 1] + HitungTotalHarga(harga, jumlah, n - 1)
+ENDFUNCTION
+
+MAIN
+    // Sequence: Deklarasi data helm
+    DECLARE jenisHelm[5] = {"Helm Full Face", "Helm Half Face", "Helm Modular", "Helm Off-Road", "Helm Retro"}
+    DECLARE hargaHelm[5] = {500000, 300000, 450000, 550000, 350000}
+    DECLARE jumlahTerjual[5] = {10, 15, 5, 7, 8}
+    DECLARE jumlahJenisHelm = 5
+    DECLARE targetPendapatan = 5000000
+
+    // Sequence: Tampilkan judul
+    PRINT "=== Penjualan Helm ==="
+    PRINT "Jenis Helm       | Harga   | Terjual | Subtotal"
+    PRINT "----------------------------------------------"
+
+    // Repetition: Loop untuk menampilkan data penjualan helm
+    FOR i FROM 0 TO jumlahJenisHelm - 1 DO
+        DECLARE subtotal = hargaHelm[i] * jumlahTerjual[i]
+        PRINT jenisHelm[i], " | ", hargaHelm[i], " | ", jumlahTerjual[i], " | ", subtotal
+    ENDFOR
+
+    // Hitung total pendapatan menggunakan fungsi rekursif
+    DECLARE totalPendapatan = HitungTotalHarga(hargaHelm, jumlahTerjual, jumlahJenisHelm)
+
+    // Sequence: Tampilkan total pendapatan
+    PRINT "----------------------------------------------"
+    PRINT "Total Pendapatan: ", totalPendapatan
+
+    // Selection: Evaluasi apakah target tercapai
+    IF totalPendapatan >= targetPendapatan THEN
+        PRINT "Selamat! Target penjualan tercapai."
+    ELSE
+        PRINT "Target belum tercapai, tingkatkan penjualan!"
+    ENDIF
+ENDMAIN

@@ -1,0 +1,49 @@
+h1 {
+    text-align: left;
+    margin-bottom: 20px
+}
+
+table {
+    width: 1000px;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #f0f0f0;
+}
+
+.main {
+    width: 200px;
+    height: 92px;
+    background: linear-gradient(to right, #ff0000, #fff000);
+    color: #fff;
+    text-align: center;
+    align-content: center;
+    border-radius: 10px 8px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 200px;
+}
+
+p {
+    width: 50px;
+    font-family: sans-serif;
+    height: 50px;
+    background-color: #950606;
+    border: #000 5px solid;
+    border-radius: 5px;
+}
+
+.Laki {
+    background-color: #793f;
+}

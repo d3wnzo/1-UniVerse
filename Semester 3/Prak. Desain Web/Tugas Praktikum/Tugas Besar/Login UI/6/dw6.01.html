@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DW6.01</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Formulir Pendaftaran</h1>
+    <form>
+        <label for="txtNama">Nama Lengkap:</label>
+        <input type="text" id="txtNama" name="txtNama" size="100" placeholder="Nama Lengkap..." required>
+
+        <label for="txtPassword">Kata Sandi:</label>
+        <input type="Password" id="txtPassword" name="txtPassword" size="50" placeholder="Kata Sandi..." required>
+
+        <label for="gender">Jenis Kelamin</label>
+        <div class="gender-group">
+            <label><input type="radio" name="gender" value="Laki-Laki" checked> Laki-Laki</label>
+            <label><input type="radio" name="gender" value="Perempuan"> Perempuan</label>
+        </div>
+
+        <label for="provinsi">Provinsi:</label>
+        <select id="provinsi" name="provinsi" required>
+            <option value="">== Pilih Provinsi ==</option>
+            <option value="Jawa Barat" selected>Jawa Barat</option>
+            <option value="Jawa Tengah">Jawa Tengah</option>
+            <option value="Jawa Timur">Jawa Timur</option>
+            <option value="DKI Jakarta">DKI Jakarta</option>
+        </select>
+
+        <label for="alamat">Alamat Lengkap</label>
+        <textarea id="alamat" name="alamat" cols="40" rows="4" placeholder="Alamat Lengkap..." required></textarea>
+
+        <div class="buttons">
+            <input type="reset" value="Batal">
+            <input type="submit" value="Kirim">
+        </div>
+    </form>
+</body>
+</html>
